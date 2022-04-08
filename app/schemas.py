@@ -6,12 +6,12 @@ from typing import Optional
 # users schema
 
 class CreateUser(BaseModel):
-    id: int = None
     name: str
     email: EmailStr
     password: str
 
 class UserResponse(CreateUser):
+    id: int
     created_at: datetime
     
     class Config:
