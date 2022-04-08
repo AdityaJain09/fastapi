@@ -24,12 +24,14 @@ async def get_posts(db: Session = Depends(get_db), current_user: schemas.TokenPa
 #     posts = db.query(models.Post).filter(models.Post.user_id == current_user.id).all()
 #     return posts
 
-@route.post("/", status_code= status.HTTP_201_CREATED, response_model= schemas.PostCreateResponse)
+# response_model= schemas.PostCreateResponse
+@route.post("/", status_code= status.HTTP_201_CREATED)
 def create_post(post: schemas.CreatePost, db: Session = Depends(get_db),
     current_user: int = Depends(oauth2.get_current_user)):
     # cursor.execute("INSERT INTO posts (title, description) VALUES(%s, %s) RETURNING *",(post.title, post.description))
     # savedPost = cursor.fetchone()
     # conn.commit()
+    
     new_post= models.Post(user_id = current_user.id, **post.dict())
     db.add(new_post)
     db.commit()
