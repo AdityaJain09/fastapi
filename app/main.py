@@ -6,7 +6,7 @@ from .routers import post, user, auth, vote
 from fastapi.middleware.cors import CORSMiddleware
 
 # generate tables
-models.Base.metadata.create_all(bind = engine)
+# models.Base.metadata.create_all(bind = engine)
 
 app = FastAPI()
 
